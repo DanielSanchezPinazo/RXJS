@@ -10,17 +10,17 @@ import { zip, of } from 'rxjs';
  *   Luke Skywalker, llamando el endpoint:   /people/1/
  * 
  *  La segunda petición, debe de ser utilizando el objeto
- *  de la petición anterior, y tomar el planeta de nacimiento
- *  (homeworld), que es la URL a la que hay que realizar la 
- *  segunda llamada, la cual debería de traer información 
- *  sobre su planeta natal (homeworld)
+ *  de la petición anterior, y tomar la especie (species),
+ *  que es un arreglo de URLs (array), dentro de ese arreglo, 
+ *  tomar la primera posición y realizar la llamada a ese URL,
+ *  el cual debería de traer información sobre su especie (Human)
  */
 
 // Respuesta esperada:
 // Información sobre los humanos en el universo de Star Wars
 // Ejemplo de la data esperada
 /*
- { name: "Tatooine", "rotation_period": "23", "orbital_period": "304", "diameter": "10465", "climate": "arid", …}
+ { name: "Human", classification: "mammal", designation: "sentient", average_height: "180", skin_colors: "caucasian, black, asian, hispanic", …}
 */
 
 // Respuesta esperada con Mayor dificultad
@@ -34,8 +34,8 @@ import { zip, of } from 'rxjs';
 
 // Ejemplo de la data esperada:
 /*
-    personaje: {name: "Human", classification: "mammal", designation: "sentient", average_height: "180", skin_colors: "caucasian, black, asian, hispanic", …}
-    planeta:  { name: "Tatooine", "rotation_period": "23", "orbital_period": "304", "diameter": "10465", "climate": "arid", …}
+    especie: {name: "Human", classification: "mammal", designation: "sentient", average_height: "180", skin_colors: "caucasian, black, asian, hispanic", …}
+    personaje: {name: "Luke Skywalker", height: "172", mass: "77", hair_color: "blond", skin_color: "fair", …}
 */
 
 
@@ -47,16 +47,18 @@ import { zip, of } from 'rxjs';
     // ==================================================================
 
     // Realizar el llamado al URL para obtener a Luke Skywalker
-    getRequest(`${ SW_API }/people/1/`).pipe(
-        //! primera  y segunda respuesta
-        // switchMap( resp => getRequest( resp["homeworld"]))
-        switchMap( resp => zip( of(resp), getRequest( resp["homeworld"]))),
-        map( ([ personaje, planeta ]) => ({ personaje, planeta}) )
-     
+    getRequest(`Aquí va un URL`).pipe(
+        // Realizar los operadores respectivos aquí
+        
+
+
+        
 
     // NO TOCAR el subscribe ni modificarlo ==
-    ).subscribe( console.log );           // ==
-    // =======================================   
+    ).subscribe( console.log )           // ==
+    // =======================================
+
+
 
 })();
 
