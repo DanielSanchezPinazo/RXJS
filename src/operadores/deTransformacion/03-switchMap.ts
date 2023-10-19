@@ -4,7 +4,6 @@ import { debounceTime, map, mergeMap, switchMap } from "rxjs/operators";
 import { ajax } from "rxjs/ajax";
 
 import { GithubUser } from "../../interfaces/githubUser.interface";
-import { GithubUsersResp } from "../../interfaces/githubUsers.interface";
 
 // Referencias
 const body = document.querySelector("body");
